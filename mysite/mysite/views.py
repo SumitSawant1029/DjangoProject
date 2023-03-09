@@ -9,6 +9,7 @@ def analyze(request):
 
     text = request.GET.get('text','default')
     removepunc = request.GET.get('removepunc','off')
+    Capitalized = request.GET.get('Capitalized','off')
     print(removepunc)
     if removepunc == "on":
     
@@ -19,6 +20,13 @@ def analyze(request):
             if char not in puntuations:
                 analyzed = analyzed + char
         param = {'purpose':'Removed Puntuations','analyzed_text':analyzed}
+    elif Capitalized == "on":
+        analyzed = ""
+
+        for char in text:
+            analyzed = analyzed + char.upper()
+        param = {'purpose':'Capitalized','analyzed_text':analyzed}
+
     else:
         param = {'purpose':'Removed Puntuations','analyzed_text':text}
     return render(request,'analyze.html',param)
