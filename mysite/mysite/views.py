@@ -8,15 +8,19 @@ from django.shortcuts import render
 def analyze(request):
 
     text = request.GET.get('text','default')
-    print(text)
     removepunc = request.GET.get('removepunc','off')
-    analyzed = ""
-    puntuations = '''!()-[]{};:'"\,<>./?^#$%&*_~'''
+    print(removepunc)
+    if removepunc == "on":
+    
+        analyzed = ""
+        puntuations = '''!()-[]{};:'"\,<>./?^#$%&*_~'''
 
-    for char in text:
-        if char not in puntuations:
-            analyzed = analyzed + char
-    param = {'purpose':'Removed Puntuations','analyzed_text':analyzed}
+        for char in text:
+            if char not in puntuations:
+                analyzed = analyzed + char
+        param = {'purpose':'Removed Puntuations','analyzed_text':analyzed}
+    else:
+        param = {'purpose':'Removed Puntuations','analyzed_text':text}
     return render(request,'analyze.html',param)
 
 def index(request):
