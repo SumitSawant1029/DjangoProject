@@ -1,10 +1,7 @@
 # I have created it
 from django.http import  HttpResponse
 from django.shortcuts import render
-# def hello(request):
-#     return  HttpResponse('Hello')
-# def return1(request):
-#     return render(request,'return.html')
+
 def analyze(request):
     removepunc = request.POST.get('removepunc', 'off')
     Capitalized = request.POST.get('Capitalized', 'off')
@@ -57,7 +54,5 @@ def analyze(request):
         return render(request, 'analyze.html', param)
 
 def index(request):
-    params = {'name': 'harry','place':'USA'}
-    return render(request,'index.html',params)
-def return1(request):
     return render(request,'index.html')
+
